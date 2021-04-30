@@ -1,4 +1,4 @@
-package TFWebb.sitemodel.mainpage;
+package SjukresorTest.sitemodel.Fardtjanst;
 
 public interface IMainPage {
     public abstract boolean isPageLoaded ();

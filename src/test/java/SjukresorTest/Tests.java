@@ -1,17 +1,12 @@
-package TFWebb;
+package SjukresorTest;
 
-import TFWebb.base.BaseTest;
+import SjukresorTest.base.BaseTest;
 
-import TFWebb.data.TFWebbData;
-import TFWebb.sitemodel.mainpage.CMainPage;
-import org.checkerframework.checker.units.qual.A;
-import org.openqa.selenium.WebElement;
+import SjukresorTest.data.TFWebbData;
+import SjukresorTest.sitemodel.Fardtjanst.CMainPage;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import se.soprasteria.automatedtesting.webdriver.helpers.driver.AutomationDriver;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Tests extends BaseTest {
     TFWebbData TFWebbDataList = new TFWebbData();

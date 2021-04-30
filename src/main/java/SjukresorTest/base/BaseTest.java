@@ -1,8 +1,8 @@
-package TFWebb.base;
-import TFWebb.sitemodel.*;
-import TFWebb.sitemodel.homepage.IHomePage;
-import TFWebb.sitemodel.loginpage.ILoginPage;
-import TFWebb.sitemodel.mainpage.IMainPage;
+package SjukresorTest.base;
+import SjukresorTest.sitemodel.*;
+import SjukresorTest.sitemodel.Sjukresa.IHomePage;
+import SjukresorTest.sitemodel.loginpage.ILoginPage;
+import SjukresorTest.sitemodel.Fardtjanst.IMainPage;
 import se.soprasteria.automatedtesting.webdriver.api.base.BaseTestCase;
 import se.soprasteria.automatedtesting.webdriver.api.base.BaseTestConfig;
 import se.soprasteria.automatedtesting.webdriver.helpers.driver.AutomationDriver;

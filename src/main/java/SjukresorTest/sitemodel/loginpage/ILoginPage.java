@@ -1,4 +1,4 @@
-package TFWebb.sitemodel.loginpage;
+package SjukresorTest.sitemodel.loginpage;
 
 public interface ILoginPage {
     public abstract boolean isPageLoaded ();

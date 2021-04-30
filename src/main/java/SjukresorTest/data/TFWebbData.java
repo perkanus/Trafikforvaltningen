@@ -1,4 +1,4 @@
-package TFWebb.data;
+package SjukresorTest.data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,8 +11,8 @@ public class TFWebbData {
     {
         // Add The users
         tfWebbUsers.add(new TFWebbUser("Sigrid Vårdgivare", "V"));
-        tfWebbUsers.add(new TFWebbUser("Kalle Kommun", "K"));
-        tfWebbUsers.add(new TFWebbUser("Mårten Månsson", "K"));
+       // tfWebbUsers.add(new TFWebbUser("Kalle Kommun", "K"));
+       // tfWebbUsers.add(new TFWebbUser("Mårten Månsson", "K"));
 
         // Bajsanvändare, verkar inte fungera
         /*

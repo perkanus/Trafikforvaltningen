@@ -1,12 +1,12 @@
-package TFWebb.sitemodel;
+package SjukresorTest.sitemodel;
 
 import org.openqa.selenium.WebDriver;
-import TFWebb.sitemodel.loginpage.CLoginPage;
-import TFWebb.sitemodel.loginpage.ILoginPage;
-import TFWebb.sitemodel.mainpage.IMainPage;
-import TFWebb.sitemodel.mainpage.CMainPage;
-import TFWebb.sitemodel.homepage.IHomePage;
-import TFWebb.sitemodel.homepage.CHomePage;
+import SjukresorTest.sitemodel.loginpage.CLoginPage;
+import SjukresorTest.sitemodel.loginpage.ILoginPage;
+import SjukresorTest.sitemodel.Fardtjanst.IMainPage;
+import SjukresorTest.sitemodel.Fardtjanst.CMainPage;
+import SjukresorTest.sitemodel.Sjukresa.IHomePage;
+import SjukresorTest.sitemodel.Sjukresa.CHomePage;
 import se.soprasteria.automatedtesting.webdriver.api.utility.Errors;
 import se.soprasteria.automatedtesting.webdriver.helpers.driver.AutomationDriver;
 

@@ -1,4 +1,4 @@
-package TFWebb.sitemodel.loginpage;
+package SjukresorTest.sitemodel.loginpage;
 
 
 import org.openqa.selenium.WebElement;

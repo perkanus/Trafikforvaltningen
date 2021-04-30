@@ -1,4 +1,4 @@
-package TFWebb.sitemodel.mainpage;
+package SjukresorTest.sitemodel.Fardtjanst;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
