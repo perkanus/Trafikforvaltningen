@@ -27,9 +27,41 @@ public class CMainPage extends BasePageObject implements IMainPage {
     @FindBy(xpath = "//*[@id='btnContinue']")
     protected WebElement btnContinue;
 
+    @FindBy (id = "MenuStart")
+    protected WebElement startMenu;
+
+    @FindBy(id = "MenuTillstand")
+    protected WebElement tillstandtMenu;
+
+    @FindBy (id = "MenuSjukresekort")
+    protected WebElement sjukresekorteMenu;
+
+    @FindBy (id = "MenuUppgifterVardgivarwebb")
+    protected WebElement uppgifterMenu;
+
+    @FindBy (id = "MenuFardtjanst")
+    protected WebElement fardtjanstMenu;
+
+    @FindBy (id = "MenuNyttTillstand")
+    protected WebElement skapaTillstandMenu;
+
+    @FindBy (id = "MenuSokTillstand")
+    protected WebElement sokTillstandMenu;
+
+
+    @FindBy (id = "MenuSkapaArende")
+    protected WebElement sokPerson;
+
+    @FindBy (id = "ConfirmSkapaArendeOchUtredning")
+    protected WebElement createUtredning;
+
+    @FindBy (id = "TaAgarskapOchStartaUtredning")
+    protected WebElement takeOwnership;
+
     public CMainPage(AutomationDriver driver) {
         super(driver);
     }
+
 
     @Override
     public boolean isPageLoaded() {
@@ -101,4 +133,141 @@ public class CMainPage extends BasePageObject implements IMainPage {
             return false;
         }
     }
+
+    @Override
+    public boolean clickMenuFardtjanst(){
+        if (elementHelper.isElementDisplayedWithinTime(fardtjanstMenu,5000))
+        {
+            wait.until(ExpectedConditions.elementToBeClickable(fardtjanstMenu)).click();
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
+    public enum menuItems {
+        START, TILLSTAND, SJUKRESEKORT, UPPGIFTER
+    }
+
+
+
+
+    public enum Menu {
+        Tillstand(null),
+        Skapa(Tillstand),
+        Sok(Tillstand),
+        Sjukresekort(null) {
+        },
+        Registera(Sjukresekort),
+        //Sok(Sjukresekort),
+
+        ;
+        private Menu parent = null;
+
+        private Menu(Menu parent) {
+            this.parent = parent;
+        }
+    }
+
+
+
+
+    public boolean selectInMenu13(Menu item) {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        try {
+            switch (item) {
+                case Tillstand:
+                    wait.until(ExpectedConditions.elementToBeClickable(tillstandtMenu)).click();
+                    break;
+                case Skapa:
+                    wait.until(ExpectedConditions.elementToBeClickable(skapaTillstandMenu)).click();
+                    break;
+                case Sok:
+                    wait.until(ExpectedConditions.elementToBeClickable(sokTillstandMenu)).click();
+                    break;
+            }
+            return true;
+        } catch (Exception e) {
+            logger.error("Johnny B good" + e.getMessage());
+            return false;
+        }
+    }
+
+
+
+
+
+    public boolean selectInMenu(menuItems item) {
+        WebDriverWait wait = new WebDriverWait(driver, 20);
+        try {
+            switch (item) {
+                case START:
+                    wait.until(ExpectedConditions.elementToBeClickable(startMenu)).click();
+                    break;
+                case TILLSTAND:
+                    wait.until(ExpectedConditions.elementToBeClickable(tillstandtMenu)).click();
+                    break;
+                case SJUKRESEKORT:
+                    wait.until(ExpectedConditions.elementToBeClickable(sjukresekorteMenu)).click();
+                    break;
+                case UPPGIFTER:
+                    wait.until(ExpectedConditions.elementToBeClickable(uppgifterMenu)).click();
+                    break;
+                default:
+                    break;
+            }
+            return true;
+        } catch (Exception e) {
+            logger.error("Johnny B good" + e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean clickSokPerson(){
+        if (elementHelper.isElementDisplayedWithinTime(sokPerson,5000))
+        {
+            wait.until(ExpectedConditions.elementToBeClickable(sokPerson)).click();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean clickCreateUtredning(){
+        if (elementHelper.isElementDisplayedWithinTime(createUtredning,5000))
+        {
+            wait.until(ExpectedConditions.elementToBeClickable(createUtredning)).click();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean clickTakeOwnership(){
+        if (elementHelper.isElementDisplayedWithinTime(takeOwnership,5000))
+        {
+            wait.until(ExpectedConditions.elementToBeClickable(takeOwnership)).click();
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
 }

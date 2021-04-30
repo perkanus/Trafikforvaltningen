@@ -7,7 +7,7 @@
 
         <!--http://slnwtwfe001/-->
 
-        <property name="config.video.record" value="true"/>
+        <property name="config.video.record" value="false"/>
     </properties>
 
     <!-- Users -->
@@ -17,6 +17,6 @@
 
     <!-- Drivers -->
     <drivers>
-        <driver id="chromedriver" type="ChromeDriver" version="88"/>
+        <driver id="chromedriver" type="ChromeDriver" version="89"/>
     </drivers>
 </config>

@@ -1,10 +1,12 @@
 package TFWebb.sitemodel;
 
-import TFWebb.sitemodel.loginpage.CLoginPage;
 import org.openqa.selenium.WebDriver;
+import TFWebb.sitemodel.loginpage.CLoginPage;
 import TFWebb.sitemodel.loginpage.ILoginPage;
 import TFWebb.sitemodel.mainpage.IMainPage;
 import TFWebb.sitemodel.mainpage.CMainPage;
+import TFWebb.sitemodel.homepage.IHomePage;
+import TFWebb.sitemodel.homepage.CHomePage;
 import se.soprasteria.automatedtesting.webdriver.api.utility.Errors;
 import se.soprasteria.automatedtesting.webdriver.helpers.driver.AutomationDriver;
 
@@ -26,6 +28,19 @@ public class PageFactory {
     public static IMainPage getMainPage(AutomationDriver driver) {
         if (driver.isWeb()) {
             return new CMainPage(driver);
+        }
+        if (driver.isAndroid()) {
+            //return Android main page
+        }
+        if (driver.isIos()) {
+            //return iOS main page
+        }
+        throw new RuntimeException(getInvalidDriverError(driver));
+    }
+
+    public static IHomePage getHomePage(AutomationDriver driver) {
+        if (driver.isWeb()) {
+            return new CHomePage(driver);
         }
         if (driver.isAndroid()) {
             //return Android main page

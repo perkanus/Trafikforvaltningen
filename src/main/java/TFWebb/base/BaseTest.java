@@ -1,5 +1,6 @@
 package TFWebb.base;
 import TFWebb.sitemodel.*;
+import TFWebb.sitemodel.homepage.IHomePage;
 import TFWebb.sitemodel.loginpage.ILoginPage;
 import TFWebb.sitemodel.mainpage.IMainPage;
 import se.soprasteria.automatedtesting.webdriver.api.base.BaseTestCase;
@@ -10,6 +11,7 @@ public class BaseTest extends BaseTestCase {
 
     protected IMainPage mainPage;
     protected ILoginPage loginPage;
+    protected IHomePage homePage;
 
     @Override
     protected String getDriverConfigId() {
@@ -26,6 +28,7 @@ public class BaseTest extends BaseTestCase {
         logger.info("Initialising pages to be used in test");
         loginPage = PageFactory.getLoginPage(driver);
         mainPage = PageFactory.getMainPage(driver);
+        homePage = PageFactory.getHomePage(driver);
     }
 
     @Override

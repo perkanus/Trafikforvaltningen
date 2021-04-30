@@ -10,7 +10,13 @@ import se.soprasteria.automatedtesting.webdriver.helpers.driver.AutomationDriver
 
 public class CLoginPage extends BasePageObject implements ILoginPage {
 
-    WebDriverWait wait = new WebDriverWait(driver,30);
+    WebDriverWait wait = new WebDriverWait(driver, 30);
+
+    @FindBy(id = "details-button")
+    protected WebElement advancedButton;
+
+    @FindBy(id = "proceed-link")
+    protected WebElement proceedButton;
 
     @FindBy(xpath = "//*[@class='form-group bmd-form-group']/a")
     protected WebElement linkLogin;
@@ -21,30 +27,23 @@ public class CLoginPage extends BasePageObject implements ILoginPage {
     @Override
     public boolean isPageLoaded() {
 
-        if (elementHelper.isElementDisplayedWithinTime(linkLogin, 15000))
-        {
+        if (elementHelper.isElementDisplayedWithinTime(linkLogin, 15000)) {
             if (elementHelper.isElementDisplayedWithinTime(btnCookie, 15000)) {
                 wait.until(ExpectedConditions.elementToBeClickable(btnCookie)).click();
-            }
-            else
-            {
+            } else {
                 return false;
             }
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
     @Override
     public boolean logIn() {
-        if (elementHelper.isElementDisplayedWithinTime(linkLogin, 15000)) {
+        if (elementHelper.isElementDisplayedWithinTime(linkLogin, 5000)) {
             wait.until(ExpectedConditions.elementToBeClickable(linkLogin)).click();
-        }
-        else
-        {
+        } else {
             return false;
         }
         return true;
@@ -53,4 +52,25 @@ public class CLoginPage extends BasePageObject implements ILoginPage {
     public CLoginPage(AutomationDriver driver) {
         super(driver);
     }
+
+    @Override
+    public boolean advanced() {
+        if (elementHelper.isElementDisplayedWithinTime(advancedButton, 5000)) {
+            wait.until(ExpectedConditions.elementToBeClickable(advancedButton)).click();
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean proceed() {
+        if (elementHelper.isElementDisplayedWithinTime(proceedButton, 5000)) {
+            wait.until(ExpectedConditions.elementToBeClickable(proceedButton)).click();
+        } else {
+            return false;
+        }
+        return true;
+    }
+
 }
