@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import se.soprasteria.automatedtesting.webdriver.api.base.BasePageObject;
 import se.soprasteria.automatedtesting.webdriver.helpers.driver.AutomationDriver;
 
-public class CMainPage extends BasePageObject implements IMainPage {
+public class CFardtjanstHomePage extends BasePageObject implements IFardtjanstHomePage {
 
     WebDriverWait wait = new WebDriverWait(driver,10);
 
@@ -30,16 +30,7 @@ public class CMainPage extends BasePageObject implements IMainPage {
     @FindBy (id = "MenuStart")
     protected WebElement startMenu;
 
-    @FindBy(id = "MenuTillstand")
-    protected WebElement tillstandtMenu;
-
-    @FindBy (id = "MenuSjukresekort")
-    protected WebElement sjukresekorteMenu;
-
-    @FindBy (id = "MenuUppgifterVardgivarwebb")
-    protected WebElement uppgifterMenu;
-
-    @FindBy (id = "MenuFardtjanst")
+    @FindBy (id = "MenuFardtjanstarende")
     protected WebElement fardtjanstMenu;
 
     @FindBy (id = "MenuNyttTillstand")
@@ -47,7 +38,6 @@ public class CMainPage extends BasePageObject implements IMainPage {
 
     @FindBy (id = "MenuSokTillstand")
     protected WebElement sokTillstandMenu;
-
 
     @FindBy (id = "MenuSkapaArende")
     protected WebElement sokPerson;
@@ -58,7 +48,10 @@ public class CMainPage extends BasePageObject implements IMainPage {
     @FindBy (id = "TaAgarskapOchStartaUtredning")
     protected WebElement takeOwnership;
 
-    public CMainPage(AutomationDriver driver) {
+    @FindBy (id = "Personnummer")
+    protected WebElement personnummer;
+
+    public CFardtjanstHomePage(AutomationDriver driver) {
         super(driver);
     }
 
@@ -147,83 +140,10 @@ public class CMainPage extends BasePageObject implements IMainPage {
 
     }
 
-    public enum menuItems {
-        START, TILLSTAND, SJUKRESEKORT, UPPGIFTER
-    }
 
 
 
 
-    public enum Menu {
-        Tillstand(null),
-        Skapa(Tillstand),
-        Sok(Tillstand),
-        Sjukresekort(null) {
-        },
-        Registera(Sjukresekort),
-        //Sok(Sjukresekort),
-
-        ;
-        private Menu parent = null;
-
-        private Menu(Menu parent) {
-            this.parent = parent;
-        }
-    }
-
-
-
-
-    public boolean selectInMenu13(Menu item) {
-        WebDriverWait wait = new WebDriverWait(driver, 20);
-        try {
-            switch (item) {
-                case Tillstand:
-                    wait.until(ExpectedConditions.elementToBeClickable(tillstandtMenu)).click();
-                    break;
-                case Skapa:
-                    wait.until(ExpectedConditions.elementToBeClickable(skapaTillstandMenu)).click();
-                    break;
-                case Sok:
-                    wait.until(ExpectedConditions.elementToBeClickable(sokTillstandMenu)).click();
-                    break;
-            }
-            return true;
-        } catch (Exception e) {
-            logger.error("Johnny B good" + e.getMessage());
-            return false;
-        }
-    }
-
-
-
-
-
-    public boolean selectInMenu(menuItems item) {
-        WebDriverWait wait = new WebDriverWait(driver, 20);
-        try {
-            switch (item) {
-                case START:
-                    wait.until(ExpectedConditions.elementToBeClickable(startMenu)).click();
-                    break;
-                case TILLSTAND:
-                    wait.until(ExpectedConditions.elementToBeClickable(tillstandtMenu)).click();
-                    break;
-                case SJUKRESEKORT:
-                    wait.until(ExpectedConditions.elementToBeClickable(sjukresekorteMenu)).click();
-                    break;
-                case UPPGIFTER:
-                    wait.until(ExpectedConditions.elementToBeClickable(uppgifterMenu)).click();
-                    break;
-                default:
-                    break;
-            }
-            return true;
-        } catch (Exception e) {
-            logger.error("Johnny B good" + e.getMessage());
-            return false;
-        }
-    }
 
     @Override
     public boolean clickSokPerson(){
@@ -259,6 +179,24 @@ public class CMainPage extends BasePageObject implements IMainPage {
         else {
             return false;
         }
+    }
+
+    @Override
+    public boolean isStartVisible(){
+        elementHelper.isElementDisplayedWithinTime(startMenu,5000);
+        return true;
+    }
+
+    public boolean fyllPersonnummer(){
+        if (elementHelper.isElementDisplayedWithinTime(personnummer,10000))
+        {
+            wait.until(ExpectedConditions.elementToBeClickable(personnummer)).sendKeys("191212121212");
+        }
+
+        else {
+            return false;
+        }
+        return true;
     }
 
 

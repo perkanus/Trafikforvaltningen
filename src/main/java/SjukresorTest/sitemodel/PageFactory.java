@@ -3,10 +3,10 @@ package SjukresorTest.sitemodel;
 import org.openqa.selenium.WebDriver;
 import SjukresorTest.sitemodel.loginpage.CLoginPage;
 import SjukresorTest.sitemodel.loginpage.ILoginPage;
-import SjukresorTest.sitemodel.Fardtjanst.IMainPage;
-import SjukresorTest.sitemodel.Fardtjanst.CMainPage;
-import SjukresorTest.sitemodel.Sjukresa.IHomePage;
-import SjukresorTest.sitemodel.Sjukresa.CHomePage;
+import SjukresorTest.sitemodel.Fardtjanst.IFardtjanstHomePage;
+import SjukresorTest.sitemodel.Fardtjanst.CFardtjanstHomePage;
+import SjukresorTest.sitemodel.Sjukresa.ISjukresaHomePage;
+import SjukresorTest.sitemodel.Sjukresa.CSjukresaSjukresaHomePage;
 import se.soprasteria.automatedtesting.webdriver.api.utility.Errors;
 import se.soprasteria.automatedtesting.webdriver.helpers.driver.AutomationDriver;
 
@@ -25,9 +25,9 @@ public class PageFactory {
         throw new RuntimeException(getInvalidDriverError(driver));
     }
 
-    public static IMainPage getMainPage(AutomationDriver driver) {
+    public static IFardtjanstHomePage getMainPage(AutomationDriver driver) {
         if (driver.isWeb()) {
-            return new CMainPage(driver);
+            return new CFardtjanstHomePage(driver);
         }
         if (driver.isAndroid()) {
             //return Android main page
@@ -38,9 +38,9 @@ public class PageFactory {
         throw new RuntimeException(getInvalidDriverError(driver));
     }
 
-    public static IHomePage getHomePage(AutomationDriver driver) {
+    public static ISjukresaHomePage getHomePage(AutomationDriver driver) {
         if (driver.isWeb()) {
-            return new CHomePage(driver);
+            return new CSjukresaSjukresaHomePage(driver);
         }
         if (driver.isAndroid()) {
             //return Android main page

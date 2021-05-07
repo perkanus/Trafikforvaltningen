@@ -1,17 +1,17 @@
 package SjukresorTest.base;
 import SjukresorTest.sitemodel.*;
-import SjukresorTest.sitemodel.Sjukresa.IHomePage;
+import SjukresorTest.sitemodel.Sjukresa.ISjukresaHomePage;
 import SjukresorTest.sitemodel.loginpage.ILoginPage;
-import SjukresorTest.sitemodel.Fardtjanst.IMainPage;
+import SjukresorTest.sitemodel.Fardtjanst.IFardtjanstHomePage;
 import se.soprasteria.automatedtesting.webdriver.api.base.BaseTestCase;
 import se.soprasteria.automatedtesting.webdriver.api.base.BaseTestConfig;
 import se.soprasteria.automatedtesting.webdriver.helpers.driver.AutomationDriver;
 
 public class BaseTest extends BaseTestCase {
 
-    protected IMainPage mainPage;
+    protected IFardtjanstHomePage fardtjanstHomePage;
     protected ILoginPage loginPage;
-    protected IHomePage homePage;
+    protected ISjukresaHomePage sjukReseHomePage;
 
     @Override
     protected String getDriverConfigId() {
@@ -20,15 +20,15 @@ public class BaseTest extends BaseTestCase {
 
     @Override
     protected String getConfigFile() {
-        return "TFWebb/TFWebb_config.xml";
+        return "TFWebb_config.xml";
     }
 
     @Override
     protected void initPages(AutomationDriver driver) {
         logger.info("Initialising pages to be used in test");
         loginPage = PageFactory.getLoginPage(driver);
-        mainPage = PageFactory.getMainPage(driver);
-        homePage = PageFactory.getHomePage(driver);
+        fardtjanstHomePage = PageFactory.getMainPage(driver);
+        sjukReseHomePage = PageFactory.getHomePage(driver);
     }
 
     @Override
