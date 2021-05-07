@@ -101,4 +101,46 @@ public class CMainPage extends BasePageObject implements IMainPage {
             return false;
         }
     }
+
+    @FindBy(xpath = "//*[@id=\"MenuTillstand\"]")
+    protected WebElement menuTillstand;
+
+    @FindBy(xpath = "//*[@id=\"MenuNyttTillstand\"]")
+    protected WebElement menuNyttTillstand;
+
+    @FindBy(xpath = "//*[@id=\"Personnummer\"]")
+    protected WebElement editPNR;
+
+    @Override
+    public boolean skapaSjukresetillstånd() {
+
+        try {
+            if (elementHelper.isElementDisplayedWithinTime(menuTillstand, 15000))
+            {
+                wait.until(ExpectedConditions.elementToBeClickable(menuTillstand)).click();
+                wait.until(ExpectedConditions.elementToBeClickable(menuNyttTillstand)).click();
+                wait.until(ExpectedConditions.elementToBeClickable(editPNR)).sendKeys("192703039202");
+            }
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+
+    }
+
+    @Override
+    public boolean sokSjukresetillstånd() {
+        return false;
+    }
+
+    @Override
+    public boolean skapaSjukresekort() {
+        return false;
+    }
+
+    @Override
+    public boolean sokSjukresekort() {
+        return false;
+    }
 }
