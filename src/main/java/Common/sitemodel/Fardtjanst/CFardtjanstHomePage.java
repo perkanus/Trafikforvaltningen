@@ -1,4 +1,4 @@
-package SjukresorTest.sitemodel.Fardtjanst;
+package Common.sitemodel.Fardtjanst;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;

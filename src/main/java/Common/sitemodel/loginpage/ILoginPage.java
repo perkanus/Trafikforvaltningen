@@ -1,4 +1,4 @@
-package SjukresorTest.sitemodel.loginpage;
+package Common.sitemodel.loginpage;
 
 public interface ILoginPage {
     public abstract boolean isPageLoaded ();

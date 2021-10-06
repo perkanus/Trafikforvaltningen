@@ -1,4 +1,4 @@
-package SjukresorTest.sitemodel.loginpage;
+package Common.sitemodel.loginpage;
 
 
 import org.openqa.selenium.WebElement;

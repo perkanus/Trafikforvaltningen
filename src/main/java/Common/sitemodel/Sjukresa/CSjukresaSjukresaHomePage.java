@@ -1,4 +1,4 @@
-package SjukresorTest.sitemodel.Sjukresa;
+package Common.sitemodel.Sjukresa;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -13,41 +13,95 @@ public class CSjukresaSjukresaHomePage extends BasePageObject implements ISjukre
 
     WebDriverWait wait = new WebDriverWait(driver, 30);
 
+    /*
+     * Logga in knapp
+     */
     @FindBy(xpath = "//*[@id='submit']")
-    protected WebElement btnLogin;
+    protected WebElement button_Log_In;
 
+    /*
+     * Välj användare lista
+     */
     @FindBy(xpath = "//*[@id='userList']")
-    protected WebElement selectUsers;
+    protected WebElement select_User;
 
+    /*
+     * Välj arbetsplats lista
+     */
     @FindBy(xpath = "//*[@id='SelectedOption']")
-    protected WebElement selectWorkplace;
+    protected WebElement select_Workplace;
 
+    /*
+     * Logga ut knapp
+     */
     @FindBy(xpath = "//*[@class='float-right']/a")
-    protected WebElement linkLogOut;
+    protected WebElement link_Log_Out;
 
+    /*
+     * Fortsätt knapp efter man valt arbetsplats
+     */
     @FindBy(xpath = "//*[@id='btnContinue']")
-    protected WebElement btnContinue;
+    protected WebElement button_Continue;
 
+    /*
+     * Webelements i menyn för Sjukresewebben
+     */
     @FindBy (id = "MenuStart")
-    protected WebElement startButton;
+    protected WebElement button_Menu_Start;
 
-    @FindBy (xpath = "//*[@id=\"MenuTillstand\"]")
-    protected WebElement menuTillstand;
+    /*
+     * Meny Tillstånd
+     */
+    @FindBy (xpath = "//*[@id='MenuTillstand']")
+    protected WebElement button_Menu_Tillstand;
 
-    @FindBy (xpath = "//*[@id=\"MenuNyttTillstand\"]")
-    protected WebElement skapaNyttTillstand;
+    @FindBy (xpath = "//*[@id='MenuNyttTillstand']")
+    protected WebElement button_Menu_Nytt_Tillstand;
+
+    @FindBy (xpath = "//*[@id='MenuSokTillstand']")
+    protected WebElement button_Menu_Sok_Tillstand;
+
+    /*
+     * Meny Sjukresekort
+     */
+
+    @FindBy (xpath = "//*[@id='MenuSjukresekort']")
+    protected WebElement button_Menu_Sjukresekort;
+
+    @FindBy (xpath = "//*[@id='MenuRegistreraSjukresekort']")
+    protected WebElement button_Menu_Registrera_Sjukresekort;
+
+    @FindBy (xpath = "//*[@id='MenuSokSjukresekort']")
+    protected WebElement button_Menu_Sok_Sjukresekort;
+
+    /*
+     * Meny Uppgifter
+     */
+
+    @FindBy (xpath = "//*[@id='MenuUppgifterVardgivarwebb']")
+    protected WebElement button_Menu_Uppgifter;
+
+    @FindBy (xpath = "//*[@id='MenuBytArbetsplats']")
+    protected WebElement button_Menu_Byt_Arbetsplats;
+
+    @FindBy (xpath = "//*[@id='MenuMinaUppgifter']")
+    protected WebElement button_Menu_Mina_Uppgifter;
+
+
+
+
 
     @FindBy (id = "Personnummer")
-    protected WebElement personnummer;
+    protected WebElement textfield_Personnummer;
 
     @FindBy (id = "btnNext")
-    protected WebElement nextButton;
+    protected WebElement button_Next;
 
     @FindBy (xpath = "//*[@id=\"collapsePatient\"]/div/div/div[2]")
     protected WebElement collapsed;
 
     @FindBy (id = "SelectedArendetyp")
-    protected WebElement selectArendetyp;
+    protected WebElement select_Arendetyp;
 
     @FindBy (linkText = "Sjukresa med sjukresekort")
     protected WebElement sjukresaMedSjukresekort;
@@ -89,7 +143,7 @@ public class CSjukresaSjukresaHomePage extends BasePageObject implements ISjukre
 
     @Override
     public boolean isPageLoaded() {
-        if (elementHelper.isElementDisplayedWithinTime(btnLogin, 15000))
+        if (elementHelper.isElementDisplayedWithinTime(button_Log_In, 15000))
         {
             return true;
         }
@@ -100,9 +154,9 @@ public class CSjukresaSjukresaHomePage extends BasePageObject implements ISjukre
 
     @Override
     public boolean selectFromUsers(String user) {
-        if (elementHelper.isElementDisplayedWithinTime(selectUsers, 15000))
+        if (elementHelper.isElementDisplayedWithinTime(select_User, 15000))
         {
-            new Select(selectUsers).selectByVisibleText(user);
+            new Select(select_User).selectByVisibleText(user);
             return true;
         }
         else {
@@ -112,9 +166,9 @@ public class CSjukresaSjukresaHomePage extends BasePageObject implements ISjukre
 
     @Override
     public boolean selectFromWorkplace(String workplace) {
-        if (elementHelper.isElementDisplayedWithinTime(selectWorkplace, 15000))
+        if (elementHelper.isElementDisplayedWithinTime(select_Workplace, 15000))
         {
-            new Select(selectWorkplace).selectByVisibleText(workplace);
+            new Select(select_Workplace).selectByVisibleText(workplace);
             return true;
         }
         else {
@@ -124,9 +178,9 @@ public class CSjukresaSjukresaHomePage extends BasePageObject implements ISjukre
 
     @Override
     public boolean logOutUser() {
-        if (elementHelper.isElementDisplayedWithinTime(linkLogOut, 15000))
+        if (elementHelper.isElementDisplayedWithinTime(link_Log_Out, 15000))
         {
-            wait.until(ExpectedConditions.elementToBeClickable(linkLogOut)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(link_Log_Out)).click();
             return true;
         }
         else {
@@ -136,9 +190,9 @@ public class CSjukresaSjukresaHomePage extends BasePageObject implements ISjukre
 
     @Override
     public boolean logInUser() {
-        if (elementHelper.isElementDisplayedWithinTime(btnLogin, 15000))
+        if (elementHelper.isElementDisplayedWithinTime(button_Log_In, 15000))
         {
-            wait.until(ExpectedConditions.elementToBeClickable(btnLogin)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(button_Log_In)).click();
             return true;
         }
         else {
@@ -148,9 +202,9 @@ public class CSjukresaSjukresaHomePage extends BasePageObject implements ISjukre
 
     @Override
     public boolean continueWithWorkplace() {
-        if (elementHelper.isElementDisplayedWithinTime(btnContinue, 15000))
+        if (elementHelper.isElementDisplayedWithinTime(button_Continue, 15000))
         {
-            wait.until(ExpectedConditions.elementToBeClickable(btnContinue)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(button_Continue)).click();
             return true;
         }
         else {
@@ -161,15 +215,15 @@ public class CSjukresaSjukresaHomePage extends BasePageObject implements ISjukre
 
     @Override
     public boolean isStartVisible(){
-        elementHelper.isElementDisplayedWithinTime(startButton,5000);
+        elementHelper.isElementDisplayedWithinTime(button_Menu_Start,5000);
         return true;
     }
 
     @Override
     public boolean clickMenuTillstand(){
-        if (elementHelper.isElementDisplayedWithinTime(menuTillstand,15000))
+        if (elementHelper.isElementDisplayedWithinTime(button_Menu_Tillstand,15000))
         {
-            wait.until(ExpectedConditions.elementToBeClickable(menuTillstand)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(button_Menu_Tillstand)).click();
             return true;
         }
         else {
@@ -180,9 +234,9 @@ public class CSjukresaSjukresaHomePage extends BasePageObject implements ISjukre
 
     @Override
     public boolean clickMenuNyttTillstand(){
-        if (elementHelper.isElementDisplayedWithinTime(skapaNyttTillstand,15000))
+        if (elementHelper.isElementDisplayedWithinTime(button_Menu_Nytt_Tillstand,15000))
         {
-            wait.until(ExpectedConditions.elementToBeClickable(skapaNyttTillstand)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(button_Menu_Nytt_Tillstand)).click();
             return true;
         }
         else {
@@ -192,9 +246,9 @@ public class CSjukresaSjukresaHomePage extends BasePageObject implements ISjukre
 
     @Override
    public boolean fyllPersonnummer(){
-        if (elementHelper.isElementDisplayedWithinTime(personnummer,10000))
+        if (elementHelper.isElementDisplayedWithinTime(textfield_Personnummer,10000))
         {
-            wait.until(ExpectedConditions.elementToBeClickable(personnummer)).sendKeys("191212121212");
+            wait.until(ExpectedConditions.elementToBeClickable(textfield_Personnummer)).sendKeys("191212121212");
         }
 
         else {
@@ -205,26 +259,26 @@ public class CSjukresaSjukresaHomePage extends BasePageObject implements ISjukre
 
    @Override
    public void enter(){
-        personnummer.sendKeys(Keys.ENTER);
+        textfield_Personnummer.sendKeys(Keys.ENTER);
    }
 
    @Override
    public void arrowDown(){
-        selectArendetyp.sendKeys(Keys.ARROW_DOWN);
+        select_Arendetyp.sendKeys(Keys.ARROW_DOWN);
    }
 
 
 
     @Override
    public void clickNext(){
-        elementHelper.clickWithinTime(nextButton,2000);
+        elementHelper.clickWithinTime(button_Next,2000);
    }
 
    @Override
    public boolean selectArendetyp(){
-        if (elementHelper.isElementDisplayedWithinTime(selectArendetyp,2000))
+        if (elementHelper.isElementDisplayedWithinTime(select_Arendetyp,2000))
         {
-            wait.until(ExpectedConditions.elementToBeClickable(selectArendetyp)).click();
+            wait.until(ExpectedConditions.elementToBeClickable(select_Arendetyp)).click();
            //wait.until(ExpectedConditions.elementToBeClickable(sjukresaMedSjukresekort)).click();
            return true;
        }

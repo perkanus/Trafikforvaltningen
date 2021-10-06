@@ -1,8 +1,9 @@
-package SjukresorTest.base;
-import SjukresorTest.sitemodel.*;
-import SjukresorTest.sitemodel.Sjukresa.ISjukresaHomePage;
-import SjukresorTest.sitemodel.loginpage.ILoginPage;
-import SjukresorTest.sitemodel.Fardtjanst.IFardtjanstHomePage;
+package Common.base;
+import Common.sitemodel.*;
+import Common.sitemodel.Sjukresa.ISjukresaHomePage;
+import Common.sitemodel.loginpage.ILoginPage;
+import Common.sitemodel.Fardtjanst.IFardtjanstHomePage;
+import DataLoading.SJR.ISJRDataload;
 import se.soprasteria.automatedtesting.webdriver.api.base.BaseTestCase;
 import se.soprasteria.automatedtesting.webdriver.api.base.BaseTestConfig;
 import se.soprasteria.automatedtesting.webdriver.helpers.driver.AutomationDriver;
@@ -12,6 +13,7 @@ public class BaseTest extends BaseTestCase {
     protected IFardtjanstHomePage fardtjanstHomePage;
     protected ILoginPage loginPage;
     protected ISjukresaHomePage sjukReseHomePage;
+    protected ISJRDataload SJRDataLoad;
 
     @Override
     protected String getDriverConfigId() {
@@ -29,6 +31,7 @@ public class BaseTest extends BaseTestCase {
         loginPage = PageFactory.getLoginPage(driver);
         fardtjanstHomePage = PageFactory.getMainPage(driver);
         sjukReseHomePage = PageFactory.getHomePage(driver);
+        SJRDataLoad = PageFactory.getSJRPage(driver);
     }
 
     @Override

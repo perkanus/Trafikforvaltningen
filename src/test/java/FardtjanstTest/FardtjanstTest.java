@@ -1,7 +1,7 @@
 package FardtjanstTest;
 
-import SjukresorTest.base.BaseTest;
-import SjukresorTest.data.TFWebbData;
+import Common.base.BaseTest;
+import Common.data.TFWebbData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import se.soprasteria.automatedtesting.webdriver.helpers.driver.AutomationDriver;

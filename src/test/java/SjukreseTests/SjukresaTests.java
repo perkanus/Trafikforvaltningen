@@ -1,15 +1,37 @@
-package SjukresorTest;
+package SjukreseTests;
 
-import SjukresorTest.base.BaseTest;
+import Common.base.BaseTest;
 
-import SjukresorTest.data.TFWebbData;
-import SjukresorTest.sitemodel.Sjukresa.CSjukresaSjukresaHomePage;
+import Common.data.TFWebbData;
+import Common.data.TFWebbSJR;
+import Common.sitemodel.Sjukresa.CSjukresaSjukresaHomePage;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import se.soprasteria.automatedtesting.webdriver.helpers.driver.AutomationDriver;
 
 public class SjukresaTests extends BaseTest {
-    TFWebbData TFWebbDataList = new TFWebbData();
+    TFWebbData TFWebbDataList;// = new TFWebbData();
+    TFWebbSJR TFWebbSJRDataList = new TFWebbSJR();
+
+    @Test(timeOut = 180000, dataProvider = "getDriver", groups = {"standard"})
+    public void CreateSJRForResenarer(AutomationDriver driver) {
+        Assert.assertTrue(loginPage.advanced(), "Wasn't clickable");
+        Assert.assertTrue(loginPage.proceed(), "Wasn't clickable");
+        sleep(2000);
+        Assert.assertTrue(loginPage.isPageLoaded(), "Login page failed to load correctly");
+        for (int i = 0; i < TFWebbSJRDataList.tfWebbUsers.size(); i++) {
+            Assert.assertTrue(loginPage.logIn(), "Login page failed to load correctly");
+            Assert.assertTrue(sjukReseHomePage.isPageLoaded(), "Login page failed to load correctly");
+            Assert.assertTrue(sjukReseHomePage.selectFromUsers("Sigrid Vårdgivare"), "Test step: selectFromUsers passed");
+            Assert.assertTrue(sjukReseHomePage.logInUser(), "Test step: logInUser passed");
+            Assert.assertTrue(sjukReseHomePage.continueWithWorkplace(), "Test step: logInUser passed");
+            Assert.assertTrue(sjukReseHomePage.isStartVisible(), "Start isn't visible");
+            Assert.assertTrue(sjukReseHomePage.clickMenuTillstand(), "Couldn't click");
+            Assert.assertTrue(sjukReseHomePage.clickMenuNyttTillstand(),"Couldn't click");
+            Assert.assertTrue(sjukReseHomePage.logOutUser(), "Test step: logOutUser passed");
+
+        }
+    }
 
 
 

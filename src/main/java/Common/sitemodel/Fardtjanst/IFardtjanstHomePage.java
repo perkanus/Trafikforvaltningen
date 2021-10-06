@@ -1,4 +1,4 @@
-package SjukresorTest.sitemodel.Fardtjanst;
+package Common.sitemodel.Fardtjanst;
 
 public interface IFardtjanstHomePage {
     public abstract boolean isPageLoaded ();

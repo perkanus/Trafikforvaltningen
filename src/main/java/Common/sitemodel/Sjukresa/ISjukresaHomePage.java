@@ -1,4 +1,4 @@
-package SjukresorTest.sitemodel.Sjukresa;
+package Common.sitemodel.Sjukresa;
 
 public interface ISjukresaHomePage {
     public abstract boolean isPageLoaded ();
