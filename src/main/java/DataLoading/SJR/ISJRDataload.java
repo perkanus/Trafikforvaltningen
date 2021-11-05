@@ -20,6 +20,7 @@ public interface ISJRDataload {
     public abstract boolean FillMedicalTitleName(String s_MedicalTitleName);
     public abstract boolean FillMedicalTitle(String s_MedicalTitle);
     public abstract boolean AddReseinformation(String s_TypAvResa, String s_Fardsatt, int i_Enkelresor, int i_AntalMedfoljande, boolean bl_UHOL, boolean bl_Enamakning, boolean bl_Framstesplacering);
+    public abstract boolean SendIn();
     public abstract void enter();
     public abstract void clickNext();
     public abstract boolean selectArendetyp();

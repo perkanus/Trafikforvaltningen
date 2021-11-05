@@ -4,6 +4,7 @@ import Common.base.BaseTest;
 
 import Common.data.Helpers;
 import Common.data.TFWebbSJR;
+import Common.data.XMLHandling;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import se.soprasteria.automatedtesting.webdriver.helpers.driver.AutomationDriver;
@@ -15,7 +16,14 @@ import java.util.concurrent.TimeUnit;
 public class SJRLoad extends BaseTest {
 
     TFWebbSJR TFWebbSJRDataList = new TFWebbSJR();
-
+    XMLHandling xmlhandler = new XMLHandling();
+    @Test(timeOut = 180000, dataProvider = "getDriver", groups = {"standard"})
+    public void TestXML(AutomationDriver driver) {
+        if(xmlhandler.validateXMLSchema("src/main/java/Common/data/datafiles/Data.xsd", "src/main/java/Common/data/datafiles/Data.xml"))
+        {
+            logger.info("BANANAAAAAAA");
+        }
+    }
 
     @Test(timeOut = 180000, dataProvider = "getDriver", groups = {"standard"})
     public void CreateSJRForResenarer(AutomationDriver driver) {
@@ -24,10 +32,11 @@ public class SJRLoad extends BaseTest {
         Assert.assertTrue(loginPage.proceed(), "Wasn't clickable");
         sleep(2000);
         Assert.assertTrue(loginPage.isPageLoaded(), "Login page failed to load correctly");
-        for (int i = 0; i < TFWebbSJRDataList.tfWebbUsers.size(); i++) {
-            Assert.assertTrue(loginPage.logIn(), "Login page failed to load correctly");
-            Assert.assertTrue(SJRDataLoad.isPageLoaded(), "Login page failed to load correctly");
+        Assert.assertTrue(loginPage.logIn(), "Login page failed to load correctly");
+        Assert.assertTrue(SJRDataLoad.isPageLoaded(), "Login page failed to load correctly");
 
+
+        for (int i = 0; i < TFWebbSJRDataList.tfWebbUsers.size(); i++) {
             Assert.assertTrue(SJRDataLoad.LoginToWebb(TFWebbSJRDataList.tfWebbUsers.get(i).s_UserName, TFWebbSJRDataList.tfWebbUsers.get(i).tfWebWorkplace.get(0).s_WorkplaceValue), "Login page failed to load correctly");
 
             Assert.assertTrue(SJRDataLoad.CheckIfTopMenuIsVisible(), "Start isn't visible");
@@ -76,7 +85,9 @@ public class SJRLoad extends BaseTest {
                             TFWebbSJRDataList.tfWebbUsers.get(i).tfResenarer.get(j).tfReseinformation.get(k).bl_Framstesplacering
                             ),"CreateSJRForResenarer: Error in AddReseinformation");
                 }
-                sleep(10000);
+                sleep(1000);
+                Assert.assertTrue(SJRDataLoad.SendIn(), "Login page failed to load correctly");
+                sleep(20000);
             }
 
 

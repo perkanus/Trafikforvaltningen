@@ -1,0 +1,95 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="Data" type="DataType"/>
+    <xs:complexType name="WorkplaceType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:long" name="s_WorkplaceValue" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="ReseinformationType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <!-- Typ av sjukresa. Begränsad till vissa värden -->
+                <xs:attribute name="s_TypeOfTrip">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="RTVOB|RMV|RTAVFPA|RTVIAL"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+                <!-- Färdsätt. Begränsad till vissa värden -->
+                <xs:attribute name="s_MeanOfTravel">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="Taxi|Båttaxi|Rullstolstaxi"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+
+                <!-- Antal enkelresor. Minimum 1, Maximum 10. Ska ta reda på riktigt maxvärde-->
+                <xs:attribute name="i_NumberOfTrips">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:minInclusive value="1"/>
+                        <xs:maxInclusive value="10"/>
+                    </xs:restriction>
+                </xs:simpleType>
+                </xs:attribute>
+
+                <!-- Antal medföljare. Minimum 0, Maximum 3. -->
+                <xs:attribute name="i_NoOfCompanions">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:integer">
+                            <xs:minInclusive value="0"/>
+                            <xs:maxInclusive value="3"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:attribute>
+
+                <xs:attribute type="xs:string" name="bl_UHOL"/>
+                <xs:attribute type="xs:string" name="bl_Alone"/>
+                <xs:attribute type="xs:string" name="bl_FrontSeat"/>
+                <xs:attribute type="xs:string" name="bl_Connection"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="CardType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:int" name="s_KortNummer"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="PermitType">
+        <xs:sequence>
+            <xs:element type="ReseinformationType" name="Reseinformation"/>
+            <xs:element type="CardType" name="Card"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="s_PermitType"/>
+        <xs:attribute type="xs:int" name="s_CardNumber"/>
+        <xs:attribute type="xs:byte" name="i_Duration"/>
+        <xs:attribute type="xs:string" name="s_MedicinskTitelNamn"/>
+        <xs:attribute type="xs:string" name="s_MedicinskTitel"/>
+    </xs:complexType>
+    <xs:complexType name="TravellerType">
+        <xs:sequence>
+            <xs:element type="PermitType" name="Permit"/>
+        </xs:sequence>
+        <xs:attribute type="xs:long" name="s_TravellerPNR"/>
+        <xs:attribute type="xs:string" name="s_IDType"/>
+    </xs:complexType>
+    <xs:complexType name="UserType">
+        <xs:sequence>
+            <xs:element type="WorkplaceType" name="Workplace" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="TravellerType" name="Traveller"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="s_UserName"/>
+        <xs:attribute type="xs:string" name="s_UserType"/>
+    </xs:complexType>
+    <xs:complexType name="DataType">
+        <xs:sequence>
+            <xs:element type="UserType" name="User"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

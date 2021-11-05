@@ -1,0 +1,16 @@
+<?xml version = "1.0"?>
+<Data>
+    <User s_UserName = "Sigrid Vårdgivare" s_UserType = "SJR">
+        <Workplace s_WorkplaceValue = "11362020004"/>
+        <Workplace s_WorkplaceValue = "19104011000"/>
+
+        <Traveller s_TravellerPNR = "201603122381" s_IDType = "Personnummer">
+            <Permit s_PermitType = "SJR" s_CardNumber = "73300642" i_Duration = "12" s_MedicinskTitelNamn = "Periklis Karolidis" s_MedicinskTitel = "Barnmorska">
+                <Reseinformation s_TypeOfTrip = "RTVOB" s_MeanOfTravel = "Taxi" i_NumberOfTrips = "10" i_NoOfCompanions = "2" bl_UHOL = "false" bl_Alone = "false" bl_FrontSeat = "false" bl_Connection = "false"/>
+                <Card s_KortNummer = "73300642"/> <!-- Extra kort. -->
+            </Permit>
+        </Traveller>
+
+
+    </User>
+</Data>

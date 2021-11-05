@@ -176,6 +176,10 @@ public class CSJRDataload extends BasePageObject implements ISJRDataload {
     @FindBy (xpath = "//*[@id='btnAddReseinformation']")
     protected WebElement button_AddReseinformation;
 
+    // Skicka In
+    @FindBy (xpath = "//*[@id='btnCreate']")
+    protected WebElement button_SkickaIn;
+
 
     public CSJRDataload(AutomationDriver driver) {
         super(driver);
@@ -186,8 +190,13 @@ public class CSJRDataload extends BasePageObject implements ISJRDataload {
     public boolean LoginToWebb(String user, String workplace) {
         try {
             // Välj användare från listan
-            if (elementHelper.isElementDisplayedWithinTime(select_User, 15000))
+            if (elementHelper.isElementDisplayedWithinTime(select_User, 15000)) {
+                if(VISUAL_DEBUG)
+                    helper.drawBorder(driver, select_User, "red", 3);
+                if (TIME_DELAY)
+                    sleep(DELAY_LENGTH);
                 new Select(select_User).selectByVisibleText(user);
+            }
             // Tryck Log in knappen
             if (elementHelper.isElementDisplayedWithinTime(button_Log_In, 15000))
                 wait.until(ExpectedConditions.elementToBeClickable(button_Log_In)).click();
@@ -400,8 +409,7 @@ public class CSJRDataload extends BasePageObject implements ISJRDataload {
         }
         return true;
     }
-    //*[@id="divMedicinskTitel"]/span[1]/span[1]/span
-    //*[@id="SelectedMedicinskTitel"]
+
 
     @Override
     public boolean FillMedicalTitle(String s_MedicalTitle) {
@@ -635,6 +643,16 @@ public class CSJRDataload extends BasePageObject implements ISJRDataload {
         {
             logger.info("LÄGG TILL RESEINFORMATION");
         }
+    }
+
+    @Override
+    public boolean SendIn() {
+        if (elementHelper.isElementDisplayedWithinTime(button_SkickaIn, 10000)) {
+            wait.until(ExpectedConditions.elementToBeClickable(button_SkickaIn)).click();
+        } else {
+            return false;
+        }
+        return true;
     }
 
     @Override

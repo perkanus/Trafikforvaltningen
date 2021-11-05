@@ -17,6 +17,6 @@
 
     <!-- Drivers -->
     <drivers>
-        <driver id="chromedriver" type="ChromeDriver" version="92"/>
+        <driver id="chromedriver" type="ChromeDriver" version="95"/>
     </drivers>
 </config>
